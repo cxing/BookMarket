@@ -26,9 +26,18 @@ public class BookController {
 		for (Book book : books) {
 			System.out.println(book.toString());
 		}
-		//model.addAttribute("list", list);
+		model.addAttribute("books", books);
 		// list.jsp + model = ModelAndView
-		//logger.error("now {}" , "starting server");  
-		return "book/list";// WEB-INF/jsp/"list".jsp
+		return "book/list";
+	}
+	
+	@RequestMapping(value = "/session", method = RequestMethod.GET)
+	private String session(Model model) {
+		return "session-page1";
+	}
+	
+	@RequestMapping(value = "/session2", method = RequestMethod.GET)
+	private String session2(Model model) {
+		return "session-page2";
 	}
 }

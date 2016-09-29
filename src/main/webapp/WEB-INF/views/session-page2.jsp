@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.*,java.util.*" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,12 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	协议类型版本号： <%= request.getProtocol() %> <br>
-	服务器主机名： <%=request.getServerName() %> <br>
-	服务器端口号： <%=request.getServerPort() %> <br>
+	<h1>Session 内置对象</h1>
 	<hr>
-	<c:forEach items="${books}" var="book"> 
-  		${book.toString()} <br />
-	</c:forEach>
+	Session创建时间 <%=session.getCreationTime() %> <br>
+	Session ID编号<%=session.getId() %> <br>
+	Session 用户名 <%=session.getAttribute("useaname") %> <br>
 </body>
 </html>
