@@ -26,13 +26,22 @@
 	
 	<select id="queryAll" resultType="Book">
 		SELECT
-			book_id,
-			name,
-			number
+			id,
+			cid,
+			bname,
+			author,
+			price,
+			press,
+			publishtime,
+			edition,
+			pageNum,
+			wordNum,
+			printTime,
+			image
 		FROM
-			book
+			t_book_10001
 		ORDER BY
-			book_id
+			id
 		LIMIT #{offset}, #{limit}
 	</select>
 	
