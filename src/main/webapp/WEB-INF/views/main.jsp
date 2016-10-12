@@ -14,6 +14,7 @@
 <title>网上购物系统</title>
 <link rel="stylesheet" href="${ctxStatic}/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="${ctxStatic}/css/sub-menu.css">
+<link rel="stylesheet" type="text/css" href="${ctxStatic}/css/component.css" />
 <style>
 .container {
 	background: cornsilk;
@@ -182,15 +183,20 @@ ul.list-group.list-group-2 li img {
 				</div>
 			</div>
 		</div>
-		<%-- <c:forEach var="i" begin="1" end="4" step="1"></c:forEach> --%>
-		<div class="row row-goods">
-			<c:forEach items="${books}" var="book">
-				<div class="col-md-3">
-					<img src="${ctxStatic}/images/4.jpg" alt=""><br>
-					${book.bname}<br> ${book.author}<br> ${book.bname}<br>
+				<div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-grid">
+					<ul>
+						<c:forEach items="${books}" var="book">
+						<li>
+							<a class="cbp-vm-image" href="#"><img src="${ctxStatic}/images/20928547-1_w_1.jpg"></a>
+							<h3 class="cbp-vm-title">${book.bname}</h3>
+							<div class="cbp-vm-details">
+								<p>出版社    ：${book.press}</p>
+							</div>
+							<a class="cbp-vm-icon cbp-vm-add" href="http://www.htmleaf.com/">Add to cart</a>
+						</li>
+						</c:forEach>
+					</ul>
 				</div>
-			</c:forEach>
-		</div>
 	</div>
 	<footer>
 		<p class="pull-right">
