@@ -22,6 +22,6 @@ public class BookServiceImpl implements BookService {
 	}
 
 	public List<Book> getList() {
-		return bookDao.queryAll(0, 1000);
+		return bookDao.queryAll(1, 4);
 	}
 }

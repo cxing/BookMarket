@@ -33,6 +33,8 @@ public class BookController {
 
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	private String main(Model model) {
+		List<Book> books = bookService.getList();
+		model.addAttribute("books", books);
 		return "main";
 	}
 
