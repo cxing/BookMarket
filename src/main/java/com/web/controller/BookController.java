@@ -30,7 +30,12 @@ public class BookController {
 		// list.jsp + model = ModelAndView
 		return "book/list";
 	}
-	
+
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	private String main(Model model) {
+		return "main";
+	}
+
 	@RequestMapping(value = "/session", method = RequestMethod.GET)
 	private String session(Model model) {
 		return "session-page1";
