@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.web.entity.Book;
+import com.web.entity.Category;
 import com.web.service.BookService;
+import com.web.service.CategoryService;
 
 @Controller
 @RequestMapping("/book")
@@ -20,6 +22,9 @@ public class BookController {
 	@Autowired
 	private BookService bookService;
 	
+	@Autowired
+	private CategoryService categoryService;
+	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	private String books(Model model) {
 		List<Book> books = bookService.getList();
@@ -29,13 +34,12 @@ public class BookController {
 	}
 
 	@RequestMapping(value = "/category", method = RequestMethod.GET)
-	private String catalog(Model model) {
-		//List<category> categorys = categoryService.getCategoryList();
-		//for (category categorylist : categorys) {
-		//System.out.println(categorylist.toString());
-		//}
-		
-		//model.addAttribute("categorys", categorys);
+	private String category(Model model) {
+		List<Category> categorys = categoryService.getCategoryList();
+		for (Category category : categorys) {
+			System.out.println(category.toString());
+		}
+		model.addAttribute("categorys", categorys);
 		return "book/category";
 	}
 
