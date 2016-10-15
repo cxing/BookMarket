@@ -23,12 +23,20 @@ public class BookController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	private String books(Model model) {
 		List<Book> books = bookService.getList();
-		for (Book book : books) {
-			System.out.println(book.toString());
-		}
 		model.addAttribute("books", books);
 		// list.jsp + model = ModelAndView
 		return "book/list";
+	}
+
+	@RequestMapping(value = "/category", method = RequestMethod.GET)
+	private String catalog(Model model) {
+		//List<category> categorys = categoryService.getCategoryList();
+		//for (category categorylist : categorys) {
+		//System.out.println(categorylist.toString());
+		//}
+		
+		//model.addAttribute("categorys", categorys);
+		return "book/category";
 	}
 
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
@@ -42,7 +50,7 @@ public class BookController {
 	private String session(Model model) {
 		return "session-page1";
 	}
-	
+
 	@RequestMapping(value = "/session2", method = RequestMethod.GET)
 	private String session2(Model model) {
 		return "session-page2";

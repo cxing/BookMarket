@@ -102,19 +102,7 @@ ul.list-group.list-group-2 li img {
 				<div class="toptitle">
 					<a href="sortgoods.html" style="padding-left: 30px; color: #fff;">全部商品分类</a>
 				</div>
-				<ul class="topmenu" id="topmenu">
-					<li><a href="#">服饰、珠宝首饰</a></li>
-					<li><a href="#">图书、音像、数字商品</a></li>
-					<li><a href="#">家用电器</a></li>
-					<li><a href="#">手机、数码</a></li>
-					<li><a href="#">个护化妆</a></li>
-					<li><a href="#">电脑、办公</a></li>
-					<li><a href="#">家居、家具、家装、厨具</a></li>
-					<li><a href="#">鞋靴、箱包、钟表、奢侈品</a></li>
-					<li><a href="#">运动户外</a></li>
-					<li><a href="#">汽车用品</a></li>
-					<li><a href="#">母婴、玩具乐器</a></li>
-				</ul>
+				<c:import url="/book/category"></c:import>
 			</div>
 			<div class="col-md-6">
 				<div id="carousel-explorer" class="carousel slide"
@@ -183,20 +171,7 @@ ul.list-group.list-group-2 li img {
 				</div>
 			</div>
 		</div>
-				<div id="cbp-vm" class="cbp-vm-switcher cbp-vm-view-grid">
-					<ul>
-						<c:forEach items="${books}" var="book">
-						<li>
-							<a class="cbp-vm-image" href="#"><img src="${ctxStatic}/images/20928547-1_w_1.jpg"></a>
-							<h3 class="cbp-vm-title">${book.bname}</h3>
-							<div class="cbp-vm-details">
-								<p>出版社    ：${book.press}</p>
-							</div>
-							<a class="cbp-vm-icon cbp-vm-add" href="http://www.htmleaf.com/">Add to cart</a>
-						</li>
-						</c:forEach>
-					</ul>
-				</div>
+		<c:import url="/book/list"></c:import>
 	</div>
 	<footer>
 		<p class="pull-right">
