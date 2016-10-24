@@ -47,4 +47,7 @@
 		<!-- 给出需要扫描Dao接口包 -->
 		<property name="basePackage" value="com.web.dao" />
 	</bean>
+
+	<!-- 引入redis-context.xml属性配置文件 -->
+	<import resource="classpath:redis/redis-context.xml" />
 </beans>
