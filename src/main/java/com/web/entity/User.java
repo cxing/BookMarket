@@ -2,6 +2,9 @@ package com.web.entity;
 
 import java.io.Serializable;
 
+import com.web.redis.annotation.CacheKey;
+import com.web.redis.annotation.Cacheable;
+
 public class User implements Serializable {
 
 	private static final long serialVersionUID = -3766780183428993793L;
@@ -39,6 +42,7 @@ public class User implements Serializable {
 	/**
 	 * @return the uname
 	 */
+	@Cacheable(expire=3600)
 	public String getUname() {
 		return uname;
 	}
@@ -47,7 +51,8 @@ public class User implements Serializable {
 	 * @param uname
 	 *            the uname to set
 	 */
-	public void setUname(String uname) {
+	@Cacheable(expire=3600)
+	public void setUname(@CacheKey String uname) {
 		this.uname = uname;
 	}
 
