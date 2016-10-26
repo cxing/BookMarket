@@ -1,9 +1,13 @@
 package com.web.entity;
 
+import java.io.Serializable;
+
 /**
  * 图书实体
  */
-public class Book {
+public class Book implements Serializable {
+
+	private static final long serialVersionUID = -3766780183428993793L;
 
 	private String id;			// 图书ID
 

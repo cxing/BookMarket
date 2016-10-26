@@ -42,4 +42,8 @@
 		</property>
 	</bean>
 
+	<bean id="stringRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
+		<property name="connectionFactory" ref="jedisConnFactory" />
+	</bean>
+
 </beans>

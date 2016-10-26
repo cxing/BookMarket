@@ -1,6 +1,10 @@
 package com.web.entity;
 
-public class Category {
+import java.io.Serializable;
+
+public class Category implements Serializable {
+
+	private static final long serialVersionUID = -3766780183428993793L;
 
 	//index id
 	private int id;
