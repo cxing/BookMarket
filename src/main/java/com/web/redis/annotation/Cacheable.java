@@ -1,17 +1,35 @@
 package com.web.redis.annotation;
 
-import java.lang.annotation.*;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-@Retention(RetentionPolicy.RUNTIME)  
-@Target({ElementType.METHOD}) 
+import org.springframework.stereotype.Component;
+
+/**
+ *
+* @描述: 启用缓存注解、在方法上添加该注解表示将该方法纳入到缓存管理中
+* @时间: 2016年6月12日 上午10:53:19
+* @作者：  邢长旭
+* @版本：V1.0.0
+*
+ */
+@Component
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.METHOD})
 public @interface Cacheable {
-    public enum KeyMode{  
-        DEFAULT,    //只有加了@CacheKey的参数,才加入key后缀中  
-        BASIC,      //只有基本类型参数,才加入key后缀中,如:String,Integer,Long,Short,Boolean  
-        ALL;        //所有参数都加入key后缀  
-    }  
-      
-    public String key() default "";     //缓存key  
-    public KeyMode keyMode() default KeyMode.DEFAULT;       //key的后缀模式  
-    public int expire() default 0;      //缓存多少秒,默认无限期 
+
+	public enum KeyMode{
+		DEFAULT, //添加@cachekey的参数才加入key后缀中
+		ALL;     //所有参数都加入key后缀
+	}
+
+	public String key() default "";
+
+	public KeyMode keyMode() default KeyMode.DEFAULT;
+
+	public int expire() default 0;
+
+
 }

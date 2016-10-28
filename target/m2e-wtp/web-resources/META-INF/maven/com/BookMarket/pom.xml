@@ -137,16 +137,6 @@
 
 	<!-- springmvc aop configuration -->
 	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-aop</artifactId>
-		<version>4.3.1.RELEASE</version>
-	</dependency>
-	<dependency>
-		<groupId>aspectj</groupId>
-		<artifactId>aspectjrt</artifactId>
-		<version>1.5.3</version>
-	</dependency>
-	<dependency>
 		<groupId>org.aspectj</groupId>
 		<artifactId>aspectjweaver</artifactId>
 		<version>1.8.9</version>
