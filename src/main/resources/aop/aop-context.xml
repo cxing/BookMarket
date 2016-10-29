@@ -16,6 +16,6 @@
 
 	<!-- Just used for test -->
 	<bean id="userServeice" class="com.web.service.UserServeice">
-	</bean>	
+	</bean>
 
 </beans>

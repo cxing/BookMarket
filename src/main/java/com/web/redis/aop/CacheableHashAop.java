@@ -1,50 +1,47 @@
 package com.web.redis.aop;
 
 import java.lang.reflect.Method;
-import java.util.concurrent.TimeUnit;
-
+import java.util.List;
+import java.util.Map;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
 
 import com.web.redis.annotation.Cacheable;
 
 @Aspect
 @Component
-public class CacheableAop {
-
+public class CacheableHashAop {
 	@Autowired
-	private RedisTemplate<String, String> stringredisTemplate;
+	private RedisTemplate<String, List<Object>> redisTemplate;
 
-	@Around("@annotation(com.web.redis.annotation.Cacheable)")
-	public Object cached(final ProceedingJoinPoint pjp) throws Throwable {
+	@Around("@annotation(com.web.redis.annotation.HashCacheable)")
+	public Object hashCached(final ProceedingJoinPoint pjp) throws Throwable {
 		String key = getCacheKey(pjp);
-
-		ValueOperations<String, String> valueOper = stringredisTemplate.opsForValue();
-		Object value = valueOper.get(key); // 从缓存获取Key
-
-		// 如果有数据则直接返回
-		if (value != null) {
-			return value;
-		}
-
-		value = pjp.proceed();
 
 		MethodSignature methodSignature = (MethodSignature) pjp.getSignature();
 		Method method = methodSignature.getMethod();
 		final Cacheable cacheable = method.getAnnotation(Cacheable.class);
 
-		System.out.println(cacheable.expire());
-		if (cacheable.expire() <= 0) {
-			valueOper.set(key, value.toString());
-		} else {
-			valueOper.set(key, value.toString(), cacheable.expire(), TimeUnit.SECONDS);
+		// 其中key采取了StringRedisSerializer
+		// 其中value采取JdkSerializationRedisSerializer
+		HashOperations<String, String, List<Object>> valueOper = redisTemplate.opsForHash();
+		Map<String, List<Object>> map = valueOper.entries(cacheable.key().toString());
+
+		if (!map.isEmpty()) {
+			return map.get(key);
 		}
+
+		@SuppressWarnings("unchecked")
+		List<Object> value = (List<Object>) pjp.proceed();
+
+		System.out.println("cacheable.key = " + cacheable.key());
+		valueOper.put(cacheable.key(), key, value);
 
 		return value;
 	}

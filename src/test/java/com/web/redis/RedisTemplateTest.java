@@ -1,5 +1,7 @@
 package com.web.redis;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
@@ -50,11 +52,11 @@ public class RedisTemplateTest extends UnitTestBase {
 
 	@Test
 	public void testHashRedisTemplate() {
-		RedisTemplate<String, User> redisTemplate = super.getBean("redisTemplate");
+		RedisTemplate<String, Object> redisTemplate = super.getBean("redisTemplate");
 
 		//其中key采取了StringRedisSerializer
         //其中value采取JdkSerializationRedisSerializer
-		HashOperations<String, String, User> valueOper = redisTemplate.opsForHash();
+		HashOperations<String, String, Object> valueOper = redisTemplate.opsForHash();
 
 		User u1 = new User("1001", "zhangsan", "123456789", 5, "2016-10-26");
 		User u2 = new User("1002", "wangwu", "123456789", 3, "2016-10-25");
@@ -62,10 +64,41 @@ public class RedisTemplateTest extends UnitTestBase {
 		valueOper.put("userTable", "u1", u1);
 		valueOper.put("userTable", "u2", u2);
 
-		Map<String, User> map = valueOper.entries("userTable");
+		Map<String, Object> map = valueOper.entries("userTable");
 
-		System.out.println(map.get("u1").getUname());
-        System.out.println(map.get("u2").getUname());
+		//System.out.println(map.get("u1").getUname());
+        //System.out.println(map.get("u2").getUname());
+
+		User u11 = (User) map.get("u1");
+		User u22 = (User) map.get("u2");
+
+		System.out.println(u11.getUname());
+        System.out.println(u22.getUname());
+	}
+
+	@Test
+	public void testHashListRedisTemplate() {
+		RedisTemplate<String, List<User>> redisTemplate = super.getBean("redisTemplate");
+
+		//其中key采取了StringRedisSerializer
+        //其中value采取JdkSerializationRedisSerializer
+		HashOperations<String, String, List<User>> valueOper = redisTemplate.opsForHash();
+
+		User u1 = new User("1001", "zhangsan", "123456789", 5, "2016-10-26");
+		User u2 = new User("1002", "wangwu", "123456789", 3, "2016-10-25");
+
+		List<User> list = new ArrayList<User>();
+		list.add(u1);
+		list.add(u2);
+
+		valueOper.put("userTable", "u1", list);
+
+		Map<String, List<User>> map = valueOper.entries("userTable");
+
+		for (List<User> value : map.values()) {
+			for (User user : value)
+				System.out.println(user.getUname() + " and " + user.getUpwd());
+		}
 	}
 
 }
