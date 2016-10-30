@@ -12,7 +12,7 @@ import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
-import com.web.redis.annotation.Cacheable;
+import com.web.redis.annotation.HashCacheable;
 
 @Aspect
 @Component
@@ -26,7 +26,7 @@ public class CacheableHashAop {
 
 		MethodSignature methodSignature = (MethodSignature) pjp.getSignature();
 		Method method = methodSignature.getMethod();
-		final Cacheable cacheable = method.getAnnotation(Cacheable.class);
+		final HashCacheable cacheable = method.getAnnotation(HashCacheable.class);
 
 		// 其中key采取了StringRedisSerializer
 		// 其中value采取JdkSerializationRedisSerializer
@@ -44,6 +44,7 @@ public class CacheableHashAop {
 		valueOper.put(cacheable.key(), key, value);
 
 		return value;
+
 	}
 
 	/**

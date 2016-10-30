@@ -17,7 +17,7 @@ public class RedisAopTemplateTest extends UnitTestBase {
 		super("classpath:spring/spring-dao.xml");
 	}
 
-	@Test
+	//@Test
 	public void testAopAnnotation() {
 		UserServeice userServeice = super.getBean("userServeice");
 
@@ -28,7 +28,10 @@ public class RedisAopTemplateTest extends UnitTestBase {
 	public void testHashAopAnnotation() {
 		UserServeice userServeice = super.getBean("userServeice");
 		List<User> users = userServeice.getUsers();
-		System.out.println(users);
+
+		for (User user : users) {
+			System.out.println("user : " + user.getUname() + " and " + user.getUpwd());
+		}
 	}
 
 }

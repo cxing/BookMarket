@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.web.entity.User;
 import com.web.redis.annotation.Cacheable;
+import com.web.redis.annotation.HashCacheable;
 
 @Service
 public class UserServeice {
@@ -20,7 +21,7 @@ public class UserServeice {
 		return name + " " + id + " say hello!";
 	}
 
-	@Cacheable(key="userService")
+	@HashCacheable(key="userService")
 	public List<User> getUsers() {
 		List<User> users = new ArrayList<User>();
 
@@ -31,7 +32,7 @@ public class UserServeice {
 		users.add(u1);
 		users.add(u2);
 		users.add(u3);
-
+		System.out.println("getUsers called");
 		return users;
 	}
 }
