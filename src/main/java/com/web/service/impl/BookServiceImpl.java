@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.web.dao.BookDao;
 import com.web.entity.Book;
+import com.web.redis.annotation.HashCacheable;
 import com.web.service.BookService;
 
 
@@ -21,6 +22,7 @@ public class BookServiceImpl implements BookService {
 		return bookDao.queryById(bookId);
 	}
 
+	@HashCacheable(key="BookService")
 	public List<Book> getList() {
 		return bookDao.queryAll(1, 1000);
 	}

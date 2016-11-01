@@ -17,7 +17,7 @@ public class RedisAopTemplateTest extends UnitTestBase {
 		super("classpath:spring/spring-dao.xml");
 	}
 
-	//@Test
+	@Test
 	public void testAopAnnotation() {
 		UserServeice userServeice = super.getBean("userServeice");
 

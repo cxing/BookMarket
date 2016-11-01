@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.web.dao.CategoryDao;
 import com.web.entity.Category;
+import com.web.redis.annotation.HashCacheable;
 import com.web.service.CategoryService;
 
 @Service
@@ -16,6 +17,7 @@ public class CategoryServiceImpl implements CategoryService {
 	@Autowired
 	private CategoryDao categoryDao;
 
+	@HashCacheable(key="CategoryService")
 	public List<Category> getCategoryList() {
 		return categoryDao.queryAllCategory(0, 11);
 	}
