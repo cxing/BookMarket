@@ -16,10 +16,7 @@ public class BookServiceImplTest extends UnitTestBase {
 		super("classpath:spring/spring-*.xml");
 	}
 
-//	@Autowired
-//	private BookService bookService;
-
-	@Test
+	//@Test
 	public void testListBooks() throws Exception {
 		BookService bookService = super.getBean("bookServiceImpl");
 		List<Book> books = bookService.getList();
@@ -29,4 +26,13 @@ public class BookServiceImplTest extends UnitTestBase {
 		}
 	}
 
+	@Test
+	public void testPageListBooks() throws Exception {
+		BookService bookService = super.getBean("bookServiceImpl");
+		List<Book> books = bookService.getPageList(1, 5);
+
+		for (Book book : books) {
+			System.out.println(book.toString());
+		}
+	}
 }

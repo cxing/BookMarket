@@ -24,4 +24,11 @@ public interface BookService {
 	 */
 	List<Book> getList();
 
+	/*
+	 * 查询相应页的图书
+	 * 
+	 * @param pageNum
+	 * @return
+	 */
+	List<Book> getPageList(int pageNum, int pageSize);
 }

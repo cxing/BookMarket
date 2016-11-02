@@ -23,7 +23,25 @@
 		</selectKey>
 		INSERT INTO BOOK(name, number) VALUE (#{name}, #{number})
 	</insert>
-	
+
+	<select id="getPageBooks" resultType="Book">
+		SELECT
+			id,
+			cid,
+			bname,
+			author,
+			price,
+			press,
+			publishtime,
+			edition,
+			pageNum,
+			wordNum,
+			printTime,
+			image
+		FROM
+			t_book_10001
+	</select>
+
 	<select id="queryAll" resultType="Book">
 		SELECT
 			id,
@@ -44,7 +62,7 @@
 			id
 		LIMIT #{offset}, #{limit}
 	</select>
-	
+
 	<update id="reduceNumber">
 		UPDATE book
 		SET number = number - 1
