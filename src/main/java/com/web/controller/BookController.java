@@ -33,6 +33,11 @@ public class BookController {
 		return "book/list";
 	}
 
+	@RequestMapping(value = "/paging", method = RequestMethod.GET)
+	private String paging(Model model) {
+		return "book/paging";
+	}
+
 	@RequestMapping(value = "/category", method = RequestMethod.GET)
 	private String category(Model model) {
 		List<Category> categorys = categoryService.getCategoryList();

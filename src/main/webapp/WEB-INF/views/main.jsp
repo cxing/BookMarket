@@ -14,6 +14,7 @@
 <title>网上购物系统</title>
 <link rel="stylesheet" href="${ctxStatic}/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="${ctxStatic}/css/sub-menu.css">
+<link rel="stylesheet" href="${ctxStatic}/css/paging.css">
 <link rel="stylesheet" type="text/css" href="${ctxStatic}/css/component.css" />
 <style>
 .container {
@@ -172,6 +173,7 @@ ul.list-group.list-group-2 li img {
 			</div>
 		</div>
 		<c:import url="/book/list"></c:import>
+		<div class="tcdPageCode"></div>
 	</div>
 	<footer>
 		<p class="pull-right">
@@ -180,7 +182,9 @@ ul.list-group.list-group-2 li img {
 	</footer>
 </body>
 <script src="${ctxStatic}/js/jquery-1.11.0.min.js"></script>
+<script src="${ctxStatic}/js/jquery.page.js"></script>
 <script src="${ctxStatic}/dist/js/bootstrap.min.js"></script>
+<c:import url="/book/paging"></c:import>
 <script type="text/javascript">
 	window.onload = function() {
 		var Lis = document.getElementById("topmenu").getElementsByTagName("li");
